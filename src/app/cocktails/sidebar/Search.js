@@ -19,8 +19,14 @@ export default function Search(props) {
 	useEffect(() => setSearch(getUrlParams().search), []);
 
 	const handleChange = event => {
-		setQuery({...query, ...{search: event.target.value}});
-		setSearch(event.target.value);
+		const value = event.target.value;
+
+		setQuery({...query, ...{search: value}});
+		setSearch(value);
+
+		if (search !== '' && value === '' && getUrlParams().search) {
+			props.onSubmit();
+		}
 	};
 
 	const handleClearClick = () => {
@@ -41,11 +47,7 @@ export default function Search(props) {
 
 	return (
 		<div className={classes.search}>
-			{
-				search !== '' && <ClearIcon className={`${classes.icon} ${classes.clearIcon}`}
-				                            onClick={handleClearClick}/>
-			}
-
+			<ClearIcon className={`${classes.icon} ${classes.clearIcon}`} onClick={handleClearClick}/>
 			<SearchIcon className={`${classes.icon} ${classes.searchIcon}`} onClick={handleSearchClick}/>
 
 			<InputBase placeholder="Search…"

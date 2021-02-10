@@ -174,7 +174,9 @@ const cocktailCardStyles = makeStyles(theme => ({
 		left: '-9999px',
 		right: '-9999px',
 		margin: 'auto',
+		width: getCardWidth(theme.spacing),
 		height: getCardWidth(theme.spacing),
+		objectFit: 'cover',
 		transition: theme.transitions.create(['height', 'opacity'], {duration: 250}),
 
 		'&:hover': {
