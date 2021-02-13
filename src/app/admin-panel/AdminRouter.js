@@ -26,7 +26,10 @@ export default function AdminRouter() {
 					!isValid && localStorage.removeItem(TOKEN);
 					setLoggedIn(isValid);
 				})
-				.catch(() => localStorage.removeItem(TOKEN));
+				.catch(() => {
+					localStorage.removeItem(TOKEN);
+					setLoggedIn(false);
+				});
 		}
 
 		return () => source.cancel();

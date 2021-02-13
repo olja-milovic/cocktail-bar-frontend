@@ -21,6 +21,7 @@ import {
 	COCKTAIL_FIELDS,
 	DEFAULT_COCKTAIL_DATA,
 	DEFAULT_INGREDIENTS,
+	INGREDIENT_TYPE_OPTIONS,
 	NOTIFICATION_TYPES,
 	TOKEN,
 } from '../utils/constants';
@@ -31,8 +32,9 @@ const source = axios.CancelToken.source();
 export default function AdminPanel() {
 	const classes = adminPanelStyles();
 
-	const [inputList, setInputList] = useState([{...DEFAULT_INGREDIENTS, main: true}]);
+	const [ingredientList, setIngredientList] = useState([{...DEFAULT_INGREDIENTS, main: true}]);
 	const [mainValue, setMainValue] = useState(0);
+	const [isAdding, setIsAdding] = useState(false);
 	const [fetchedData, setFetchedData] = useState([{}]);
 	const [successfulAdd, setSuccessfulAdd] = useState(false);
 	const [failedAdd, setFailedAdd] = useState(false);
@@ -54,15 +56,15 @@ export default function AdminPanel() {
 	}, []);
 
 	const handleIngredientChange = (name, value, index) => {
-		const list = [...inputList];
+		const list = [...ingredientList];
 		list[index][name] = value;
-		setInputList(list);
+		setIngredientList(list);
 	};
 
 	const handleMainChange = index => {
-		let list = [...inputList];
-		inputList.forEach((item, i) => list[i].main = (i === index));
-		setInputList(list);
+		let list = [...ingredientList];
+		ingredientList.forEach((item, i) => list[i].main = (i === index));
+		setIngredientList(list);
 	};
 
 	const handleChange = (name, value) => {
@@ -71,12 +73,12 @@ export default function AdminPanel() {
 	};
 
 	const handleRemoveClick = index => {
-		const list = [...inputList];
+		const list = [...ingredientList];
 		list.splice(index, 1);
-		setInputList(list);
+		setIngredientList(list);
 	};
 
-	const handleAddClick = () => setInputList([...inputList, {...DEFAULT_INGREDIENTS}]);
+	const handleAddClick = () => setIngredientList([...ingredientList, {...DEFAULT_INGREDIENTS}]);
 
 	const logout = () => {
 		axios.put(`${process.env.REACT_APP_URL}/admin/logout`, {
@@ -91,9 +93,11 @@ export default function AdminPanel() {
 	const handleSubmit = e => {
 		e.preventDefault();
 
+		setIsAdding(true);
+
 		const fields = {};
 		COCKTAIL_FIELDS.forEach(value => fields[value.name] = cocktailData[value.name]);
-		const ingredients = {ingredients: [...inputList]};
+		const ingredients = {ingredients: [...ingredientList]};
 		const image = {
 			name: cocktailData.name,
 			url: cocktailData.image,
@@ -110,11 +114,14 @@ export default function AdminPanel() {
 			headers: createTokenHeader(),
 		})
 			.then(() => {
+				document.forms[0].reset();
+				setIsAdding(false);
 				setSuccessfulAdd(true);
 				setCocktailData(DEFAULT_COCKTAIL_DATA);
-				setInputList([{name: '', amount: ''}]);
+				setIngredientList([{...DEFAULT_INGREDIENTS, main: true}]);
 			})
 			.catch(error => {
+				setIsAdding(false);
 				setErrorMessage(error.response.data.message);
 				setFailedAdd(true);
 			});
@@ -133,11 +140,13 @@ export default function AdminPanel() {
 								return <Autocomplete
 									key={index}
 									options={fetchedData[field.name]}
+									value={cocktailData[field.name]}
 									onChange={(e, value) => handleChange(field.name, value)}
 									freeSolo
 									renderInput={params => (
 										<TextField {...params}
 										           label={field.label}
+												   value={cocktailData[field.name]}
 										           onChange={e => handleChange(field.name, e.target.value)}
 										           required={field.required}
 										           margin="normal"
@@ -162,7 +171,7 @@ export default function AdminPanel() {
 
 					<RadioGroup aria-label="gender" value={mainValue}>
 						{
-							fetchedData.ingredients && inputList.map((param, index) => {
+							fetchedData.ingredients && ingredientList.map((param, index) => {
 								return (
 									<div key={index} className={classes.ingredientSection}>
 										<div className={classes.ingredientList}>
@@ -170,13 +179,14 @@ export default function AdminPanel() {
 												<Autocomplete
 													key={`name${index}`}
 													options={fetchedData['ingredients']}
+													value={ingredientList[index].name}
 													onChange={(e, value) => handleIngredientChange('name', value, index)}
-													className={classes.ingredient}
 													freeSolo
 													renderInput={params => (
 														<TextField
 															{...params}
 															label={`${index + 1}. Name`}
+															value={ingredientList[index].name}
 															onChange={
 																e => handleIngredientChange('name', e.target.value, index)
 															}
@@ -187,7 +197,6 @@ export default function AdminPanel() {
 												<TextField name="amount"
 												           label={`${index + 1}. Amount`}
 												           value={param.amount}
-												           className={classes.ingredient}
 												           onChange={
 													           e => handleIngredientChange('amount', e.target.value, index)
 												           }
@@ -197,13 +206,14 @@ export default function AdminPanel() {
 												<Autocomplete
 													key={`type${index}`}
 													name="type"
-													options={['Spirit', 'Liqueur', 'Wine/Vermouth', 'Mixer']}
+													options={INGREDIENT_TYPE_OPTIONS}
+													value={ingredientList[index].type}
 													onChange={(e, value) => handleIngredientChange('type', value, index)}
-													className={classes.ingredient}
 													renderInput={params => (
 														<TextField
 															{...params}
 															label={`${index + 1}. Type`}
+															value={ingredientList[index].type}
 															onChange={
 																e => handleIngredientChange('type', e.target.value, index)
 															}
@@ -219,7 +229,7 @@ export default function AdminPanel() {
 												                  label="Main"/>
 											</div>
 											{
-												inputList.length !== 1 &&
+												ingredientList.length !== 1 &&
 												<IconButton type="button" className={classes.removeIngredient}
 												            onClick={() => handleRemoveClick(index)}>
 													<RemoveCircleIcon fontSize="inherit"/>
@@ -230,7 +240,7 @@ export default function AdminPanel() {
 										<Divider light className={classes.divider}/>
 
 										{
-											inputList.length - 1 === index &&
+											ingredientList.length - 1 === index &&
 											<Button color="secondary"
 											        variant="contained"
 											        startIcon={<AddCircleIcon/>}
@@ -245,7 +255,7 @@ export default function AdminPanel() {
 						}
 					</RadioGroup>
 
-					<Button color="primary" type="submit" variant="contained">Submit</Button>
+					<Button color="primary" type="submit" variant="contained" disabled={isAdding}>Submit</Button>
 				</form>
 
 				<Button color="primary" onClick={logout} variant="contained" className={classes.logout}>Logout</Button>

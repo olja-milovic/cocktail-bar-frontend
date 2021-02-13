@@ -1,7 +1,8 @@
 const TOKEN = 'bar-token';
 
 const DEFAULT_QUERY = {search: '', ingredients: {}};
-const DEFAULT_INGREDIENTS = {name: '', amount: '', type: '', main: false};
+const INGREDIENT_TYPE_OPTIONS = ['Spirit', 'Liqueur', 'Wine/Vermouth', 'Mixer'];
+const DEFAULT_INGREDIENTS = {name: '', amount: '', type: INGREDIENT_TYPE_OPTIONS[0], main: false};
 const DEFAULT_COCKTAIL_INFO = {cocktails: [], total: -1, page: 1};
 const DEFAULT_COCKTAIL_DATA = {
 	name: '',
@@ -56,6 +57,7 @@ const getCardHeight = spacingMethod => `${spacingMethod(48)}px`;
 module.exports = {
 	TOKEN,
 	DEFAULT_QUERY,
+	INGREDIENT_TYPE_OPTIONS,
 	DEFAULT_INGREDIENTS,
 	DEFAULT_COCKTAIL_INFO,
 	DEFAULT_COCKTAIL_DATA,
