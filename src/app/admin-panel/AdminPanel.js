@@ -72,6 +72,10 @@ export default function AdminPanel() {
 		setCocktailData({...cocktailData, ...data});
 	};
 
+	const handleFilter = (options, value) => options.filter(
+		option => value ? option.toLowerCase().includes(value.toLowerCase()) : option,
+	);
+
 	const handleRemoveClick = index => {
 		const list = [...ingredientList];
 		list.splice(index, 1);
@@ -142,6 +146,7 @@ export default function AdminPanel() {
 									options={fetchedData[field.name]}
 									value={cocktailData[field.name]}
 									onChange={(e, value) => handleChange(field.name, value)}
+									filterOptions={options => handleFilter(options, cocktailData[field.name])}
 									freeSolo
 									renderInput={params => (
 										<TextField {...params}
@@ -181,6 +186,9 @@ export default function AdminPanel() {
 													options={fetchedData['ingredients']}
 													value={ingredientList[index].name}
 													onChange={(e, value) => handleIngredientChange('name', value, index)}
+													filterOptions={
+														options => handleFilter(options, ingredientList[index].name)
+													}
 													freeSolo
 													renderInput={params => (
 														<TextField
@@ -209,6 +217,10 @@ export default function AdminPanel() {
 													options={INGREDIENT_TYPE_OPTIONS}
 													value={ingredientList[index].type}
 													onChange={(e, value) => handleIngredientChange('type', value, index)}
+													filterOptions={
+														options => handleFilter(options, ingredientList[index].type)
+													}
+													freeSolo
 													renderInput={params => (
 														<TextField
 															{...params}

@@ -2,7 +2,7 @@ const TOKEN = 'bar-token';
 
 const DEFAULT_QUERY = {search: '', ingredients: {}};
 const INGREDIENT_TYPE_OPTIONS = ['Spirit', 'Liqueur', 'Wine/Vermouth', 'Mixer'];
-const DEFAULT_INGREDIENTS = {name: '', amount: '', type: INGREDIENT_TYPE_OPTIONS[0], main: false};
+const DEFAULT_INGREDIENTS = {name: '', amount: '', type: '', main: false};
 const DEFAULT_COCKTAIL_INFO = {cocktails: [], total: -1, page: 1};
 const DEFAULT_COCKTAIL_DATA = {
 	name: '',
