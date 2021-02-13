@@ -1,23 +1,23 @@
 # Cocktail Bar Frontend
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png"
+[<img src="https://sandstorm.de/_Resources/Persistent/3/2/8/5/3285416e8503b2c8354c321bcd690cf550b8b2d3/React-Logo.svg"
 alt="Markdown React icon"
-height="50px"
-/>&nbsp;&nbsp;&nbsp;
-<img src="https://material-ui.com/static/logo.png"
+height="45px"
+/>](https://reactjs.org/)&nbsp;&nbsp;&nbsp;
+[<img src="https://material-ui.com/static/logo_raw.svg"
 alt="Markdown Material UI icon"
-height="50px"
-/>&nbsp;&nbsp;&nbsp;
-<img src="https://iconape.com/wp-content/files/dw/349197/svg/netlify-seeklogo.com.svg"
+height="45px"
+/>](https://material-ui.com/)&nbsp;&nbsp;&nbsp;
+[<img src="https://iconape.com/wp-content/files/dw/349197/svg/netlify-seeklogo.com.svg"
 alt="Markdown Netlify icon"
-height="50px"
-/>&nbsp;&nbsp;&nbsp;
+height="45px"
+/>](https://www.netlify.com/)&nbsp;&nbsp;&nbsp;
 
 ## Description
 
 Frontend part of an online cocktail website.
 
-#### DEMO: [Den of Thieves]().
+#### DEMO: [Den of Thieves](https://den-of-thieves.netlify.app/).
 
 ## Contributor
 
