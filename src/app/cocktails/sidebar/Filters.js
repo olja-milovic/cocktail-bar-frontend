@@ -47,7 +47,7 @@ export default function Filters(props) {
 				<Toolbar className={classes.toolbar}>
 					{
 						loading &&
-						Array(8).map((_, i) => <SkeletonFilter key={`skeleton-${i}`}/>)
+						[...Array(4).keys()].map((_, i) => <SkeletonFilter key={`skeleton-${i}`}/>)
 					}
 					{
 						!loading &&
