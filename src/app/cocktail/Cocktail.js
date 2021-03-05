@@ -1,5 +1,6 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import DocumentMeta from 'react-document-meta';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -18,15 +19,16 @@ import noCocktailLight from '../../assets/images/no-cocktail-light.png';
 import Notification from '../common/Notification';
 import { ThemeContext } from '../utils/contexts';
 import { THEMES } from '../utils/constants';
-import { getGlasswareImage, getMethodImage } from '../utils/service';
+import { getGlasswareImage, getMethodImage, getScaledImage } from '../utils/service';
 import SkeletonCocktail from './SkeletonCocktail';
 
-export default function Cocktail() {
+export default function Cocktail () {
 	const classes = cocktailStyles();
 
 	const {theme} = useContext(ThemeContext);
 
 	const [data, setData] = useState({ingredients: []});
+	const [metadata, setMetadata] = useState({});
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(false);
 	const [cocktailImage, setCocktailImage] = useState('');
@@ -45,10 +47,13 @@ export default function Cocktail() {
 			return axios(`${process.env.REACT_APP_URL}/cocktail/${id}`)
 				.then(result => {
 					result = result.data.message;
-					document.title = result.name;
 					setData(result);
 					setLoading(false);
-					result.img_url ? setCocktailImage(result.img_url) : setNoCocktailImage();
+					result.img_url ? setCocktailImage(getScaledImage(result.img_url, 500)) : setNoCocktailImage();
+					setMetadata({
+						title: `${result.name} • Den of Thieves`,
+						description: `A complete guide for creating your own ${result.name} cocktail.`,
+					});
 					loadImages(result.glassware, result.method);
 				})
 				.catch(() => {
@@ -74,15 +79,17 @@ export default function Cocktail() {
 
 	return (
 		<Fragment>
-			<Header hasSidebar={false}/>
+			<DocumentMeta {...metadata}/>
+
+			<Header hasSidebar={false} hasBackButton={true}/>
 			{
 				(error || (!loading && data.ingredients.length === 0)) &&
 				<Fragment>
 					<Notification message={'An error occurred while shaking up the ingredients.'}
-					              onClose={() => setError(false)}/>
+								  onClose={() => setError(false)}/>
 					<EmptyView width={300}
-					           heading={'Cocktail not found'}
-					           message={'The ingredients seem to be missing'}/>
+							   heading={'Cocktail not found'}
+							   message={'The ingredients seem to be missing'}/>
 				</Fragment>
 			}
 			{
@@ -95,26 +102,34 @@ export default function Cocktail() {
 
 					<Paper elevation={0} className={classes.container}>
 						<div className={classes.imageContainer}>
-							<img src={cocktailImage} onError={setNoCocktailImage} className={classes.image}/>
+							<img src={cocktailImage}
+								 width="500"
+								 height="500"
+								 loading="lazy"
+								 alt={data.name}
+								 onError={setNoCocktailImage}
+								 className={classes.image}/>
 						</div>
 
 						<div className={classes.info}>
 							<div className={classes.details}>
 								<div className={classes.detail}>
-									<img height="30"
-									     src={methodImage}
-									     style={invert}
-									     alt={data.method}/>
+									<img width="30"
+										 height="30"
+										 src={methodImage}
+										 style={invert}
+										 alt={data.method}/>
 									<Typography variant="body1">{data.method}</Typography>
 								</div>
 
 								<Divider orientation="vertical" flexItem className={classes.detailDivider}/>
 
 								<div className={classes.detail}>
-									<img height="30"
-									     src={glasswareImage}
-									     style={invert}
-									     alt={data.glassware}/>
+									<img width="30"
+										 height="30"
+										 src={glasswareImage}
+										 style={invert}
+										 alt={data.glassware}/>
 									<Typography variant="body1">{data.glassware}</Typography>
 								</div>
 
@@ -185,6 +200,7 @@ const cocktailStyles = makeStyles(theme => ({
 		backgroundSize: theme.spacing(62.5),
 		margin: 'auto',
 		maxWidth: '100%',
+		objectFit: 'cover',
 
 		[theme.breakpoints.up('sm')]: {
 			borderRadius: theme.spacing(2, 2, 0, 0),

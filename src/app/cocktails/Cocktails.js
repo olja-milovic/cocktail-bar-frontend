@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import DocumentMeta from 'react-document-meta';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { getUrlParams } from '../utils/service';
@@ -12,9 +13,18 @@ export default function Cocktails() {
 
 	const [sidebarOpen, setSidebarOpen] = React.useState(false);
 	const [query, setQuery] = React.useState(getUrlParams());
+	const [metadata, setMetadata] = React.useState(getUrlParams());
+
+	useEffect(() => setMetadata({
+		title: 'Den of Thieves • Cocktail Dictionary',
+		description: 'An extensive collection of cocktails made by the best mixologists in the world gathered in one' +
+			'place and searchable by all the key ingredients.',
+	}), []);
 
 	return (
 		<SidebarContext.Provider value={{sidebarOpen, setSidebarOpen}}>
+			<DocumentMeta {...metadata}/>
+
 			<Header hasSidebar={true}/>
 
 			<main className={classes.main}>

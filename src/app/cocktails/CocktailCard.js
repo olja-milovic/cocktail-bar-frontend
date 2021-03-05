@@ -10,10 +10,9 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
-import { getCardHeight, getCardWidth } from '../utils/constants';
+import { THEMES, getCardHeight, getCardWidth } from '../utils/constants';
 import { ThemeContext } from '../utils/contexts';
-import { getGlasswareImage, getMethodImage } from '../utils/service';
-import { THEMES } from '../utils/constants';
+import { getGlasswareImage, getMethodImage, getScaledImage } from '../utils/service';
 
 export default function CocktailCard(props) {
 	const classes = cocktailCardStyles();
@@ -25,11 +24,16 @@ export default function CocktailCard(props) {
 	const [glasswareImage, setGlasswareImage] = useState('');
 	const [methodImage, setMethodImage] = useState('');
 	const [invert, setInvert] = useState({});
+	const [cocktailImage, setCocktailImage] = useState('');
 
 	const descriptionRef = createRef();
 	const cardRef = createRef();
 
-	useEffect(() => largerDescription() && setFadeStyles({opacity: 1}), []);
+	useEffect(() => {
+		largerDescription() && setFadeStyles({opacity: 1});
+		setCocktailImage(getScaledImage(props.image, 220));
+	}, []);
+
 	useEffect(() => {
 		setGlasswareImage(getGlasswareImage(props.glassware, theme));
 		setMethodImage(getMethodImage(props.method, theme));
@@ -67,7 +71,12 @@ export default function CocktailCard(props) {
 				<Link to={`/cocktail/${props.id}`} className={classes.link}>
 					<CardContent className={classes.content}>
 
-						<img className={`cocktail-image ${classes.image}`} src={props.image} alt={classes.name}/>
+						<img className={`cocktail-image ${classes.image}`}
+							 width="220"
+							 height="220"
+							 loading="lazy"
+							 alt={props.name}
+							 src={cocktailImage}/>
 
 						<div ref={descriptionRef}
 						     style={descriptionStyles}
@@ -86,7 +95,8 @@ export default function CocktailCard(props) {
 								         placement="left"
 								         arrow
 								         classes={{tooltip: classes.tooltip}}>
-									<img height="30"
+									<img width="30"
+										 height="30"
 									     src={glasswareImage}
 									     style={invert}
 									     alt={props.glassware}/>
@@ -96,7 +106,8 @@ export default function CocktailCard(props) {
 								         placement="right"
 								         arrow
 								         classes={{tooltip: classes.tooltip}}>
-									<img height="30"
+									<img width="30"
+										 height="30"
 									     src={methodImage}
 									     style={invert}
 									     alt={props.method}/>

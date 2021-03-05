@@ -50,6 +50,12 @@ const getImage = (location, name) => {
 const getGlasswareImage = name => getImage('glasses', name);
 const getMethodImage = name => getImage('methods', name);
 
+const getScaledImage = (image, size) => {
+	let splitImage = image.replace('.jpg', '.webp').split('/');
+	splitImage.splice(6, 0, `c_scale,w_${size}`);
+	return splitImage.join('/');
+};
+
 export {
 	getUrlParams,
 	createQueryParams,
@@ -57,4 +63,5 @@ export {
 	getOtherTheme,
 	getGlasswareImage,
 	getMethodImage,
+	getScaledImage,
 };
