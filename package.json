@@ -22,7 +22,13 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.0",
     "typeface-lora": "^1.1.13",
-    "typeface-noto-sans": "^1.1.13"
+    "typeface-noto-sans": "^1.1.13",
+    "web-vitals": "^1.1.0",
+    "workbox-core": "^6.1.1",
+    "workbox-expiration": "^6.1.1",
+    "workbox-precaching": "^6.1.1",
+    "workbox-routing": "^6.1.1",
+    "workbox-strategies": "^6.1.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.5",

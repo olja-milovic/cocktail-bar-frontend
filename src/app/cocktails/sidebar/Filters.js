@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Divider from '@material-ui/core/Divider';
@@ -32,7 +32,7 @@ export default function Filters(props) {
 	}, []);
 
 	return (
-		<Fragment>
+		<>
 			{
 				error &&
 				<Notification message={'An error occurred while fetching filters.'}
@@ -67,7 +67,7 @@ export default function Filters(props) {
 					}
 				</Toolbar>
 			</AppBar>
-		</Fragment>
+		</>
 	);
 }
 

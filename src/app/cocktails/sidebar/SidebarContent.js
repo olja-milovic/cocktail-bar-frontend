@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
@@ -21,14 +21,14 @@ export default function SidebarContent(props) {
 	}, [props.numOfResults]);
 
 	return (
-		<Fragment>
+		<>
 			<div className={classes.heading}>
 				<Typography component="h5" variant="h5">Filter</Typography>
 				<Typography className={classes.numOfResults}>{numOfResults}</Typography>
 			</div>
 			<Search onSubmit={props.onSubmit}/>
 			<Filters onSubmit={props.onSubmit}/>
-		</Fragment>
+		</>
 	);
 }
 
