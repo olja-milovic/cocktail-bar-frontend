@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -146,7 +146,7 @@ export default function CardGrid() {
 	};
 
 	return (
-		<Fragment>
+		<>
 			{
 				error &&
 				<Notification message={'An error occurred while shaking up the cocktails.'}
@@ -173,13 +173,12 @@ export default function CardGrid() {
 					}
 					{
 						cocktailInfo.total === 0 &&
-						<EmptyView width={300}
-						           heading={'No cocktails found'}
+						<EmptyView heading={'No cocktails found'}
 						           message={'Try shaking up the ingredients some more'}/>
 					}
 				</div>
 			</div>
-		</Fragment>
+		</>
 	);
 }
 

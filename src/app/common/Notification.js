@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -21,7 +21,7 @@ export default function Notification(props) {
 	};
 
 	return (
-		<Fragment>
+		<>
 			<Snackbar open={open}
 			          autoHideDuration={5000}
 			          className={classes.snackbar}
@@ -35,7 +35,7 @@ export default function Notification(props) {
 					{props.message}
 				</MuiAlert>
 			</Snackbar>
-		</Fragment>
+		</>
 	);
 }
 

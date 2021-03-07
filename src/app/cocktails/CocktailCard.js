@@ -97,6 +97,7 @@ export default function CocktailCard(props) {
 								         classes={{tooltip: classes.tooltip}}>
 									<img width="30"
 										 height="30"
+										 loading="lazy"
 									     src={glasswareImage}
 									     style={invert}
 									     alt={props.glassware}/>
@@ -108,6 +109,7 @@ export default function CocktailCard(props) {
 								         classes={{tooltip: classes.tooltip}}>
 									<img width="30"
 										 height="30"
+										 loading="lazy"
 									     src={methodImage}
 									     style={invert}
 									     alt={props.method}/>

@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
@@ -15,21 +15,22 @@ export default function EmptyView(props) {
 	const {theme} = useContext(ThemeContext);
 
 	return (
-		<Fragment className={classes.noResultsContainer}>
+		<div className={classes.noResultsContainer}>
 			<img src={theme === THEMES.light ? errorLight : errorDark}
 			     alt="No preview"
-			     width={props.width}
+			     width="300"
+				 height="138"
+				 loading="lazy"
 			     className={classes.noResultsImage}/>
-			<Fragment className={classes.noResultsMessage}>
+			<div className={classes.noResultsMessage}>
 				<Typography className={classes.noResultsHeading}>{props.heading}</Typography>
 				<Typography>{props.message}</Typography>
-			</Fragment>
-		</Fragment>
+			</div>
+		</div>
 	);
 }
 
 EmptyView.propTypes = {
-	width: PropTypes.number,
 	heading: PropTypes.string,
 	message: PropTypes.string,
 };

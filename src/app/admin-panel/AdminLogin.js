@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
@@ -33,7 +33,7 @@ export default function AdminLogin(props) {
 	};
 
 	return (
-		<Fragment>
+		<>
 			<Header hasSidebar={false}/>
 
 			<Paper elevation={1} className={classes.paper}>
@@ -57,7 +57,7 @@ export default function AdminLogin(props) {
 					        type="submit">Login</Button>
 				</form>
 			</Paper>
-		</Fragment>
+		</>
 	);
 }
 

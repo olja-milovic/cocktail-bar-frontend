@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import DocumentMeta from 'react-document-meta';
 
@@ -78,26 +78,25 @@ export default function Cocktail () {
 	};
 
 	return (
-		<Fragment>
+		<>
 			<DocumentMeta {...metadata}/>
 
 			<Header hasSidebar={false} hasBackButton={true}/>
 			{
 				(error || (!loading && data.ingredients.length === 0)) &&
-				<Fragment>
+				<>
 					<Notification message={'An error occurred while shaking up the ingredients.'}
 								  onClose={() => setError(false)}/>
-					<EmptyView width={300}
-							   heading={'Cocktail not found'}
+					<EmptyView heading={'Cocktail not found'}
 							   message={'The ingredients seem to be missing'}/>
-				</Fragment>
+				</>
 			}
 			{
 				loading && <SkeletonCocktail/>
 			}
 			{
 				!loading && data.ingredients.length > 0 &&
-				<Fragment>
+				<>
 					<Typography variant="h4" className={classes.title}>{data.name}</Typography>
 
 					<Paper elevation={0} className={classes.container}>
@@ -116,6 +115,7 @@ export default function Cocktail () {
 								<div className={classes.detail}>
 									<img width="30"
 										 height="30"
+										 loading="lazy"
 										 src={methodImage}
 										 style={invert}
 										 alt={data.method}/>
@@ -127,6 +127,7 @@ export default function Cocktail () {
 								<div className={classes.detail}>
 									<img width="30"
 										 height="30"
+										 loading="lazy"
 										 src={glasswareImage}
 										 style={invert}
 										 alt={data.glassware}/>
@@ -167,9 +168,9 @@ export default function Cocktail () {
 							</Table>
 						</div>
 					</Paper>
-				</Fragment>
+				</>
 			}
-		</Fragment>
+		</>
 	);
 }
 

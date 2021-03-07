@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -7,7 +7,7 @@ export default function SkeletonCocktail() {
 	const classes = skeletonCocktailStyles();
 
 	return (
-		<Fragment>
+		<>
 			<div className={`${classes.highlight} ${classes.title}`} />
 
 			<Paper elevation={0} className={classes.container}>
@@ -19,7 +19,7 @@ export default function SkeletonCocktail() {
 					<div className={`${classes.highlight} ${classes.table}`}/>
 				</div>
 			</Paper>
-		</Fragment>
+		</>
 	);
 }
 

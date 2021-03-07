@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -132,7 +132,7 @@ export default function AdminPanel() {
 	};
 
 	return (
-		<Fragment>
+		<>
 			<Header hasSidebar={false}/>
 
 			<Paper elevation={1} className={classes.paper}>
@@ -282,7 +282,7 @@ export default function AdminPanel() {
 					<Notification message={errorMessage} onClose={() => setFailedAdd(false)}/>
 				}
 			</Paper>
-		</Fragment>
+		</>
 	);
 }
 

@@ -46,6 +46,7 @@ export default function Header(props) {
 				<img alt="logo"
 					 width="141"
 					 height="16"
+					 loading="lazy"
 					 onClick={handleLogoClick}
 					 src={logo}
 					 className={classes.logo}/>
