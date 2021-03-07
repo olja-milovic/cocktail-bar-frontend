@@ -47,8 +47,14 @@ export default function Search(props) {
 
 	return (
 		<div className={classes.search}>
-			<ClearIcon className={`${classes.icon} ${classes.clearIcon}`} tabIndex="0" onClick={handleClearClick}/>
-			<SearchIcon className={`${classes.icon} ${classes.searchIcon}`} tabIndex="0" onClick={handleSearchClick}/>
+			<ClearIcon className={`${classes.icon} ${classes.clearIcon}`}
+			           tabIndex="0"
+			           aria-hidden="false"
+			           onClick={handleClearClick}/>
+			<SearchIcon className={`${classes.icon} ${classes.searchIcon}`}
+			            tabIndex="0"
+			            aria-hidden="false"
+			            onClick={handleSearchClick}/>
 
 			<InputBase placeholder="Search…"
 					   tabIndex="-1"

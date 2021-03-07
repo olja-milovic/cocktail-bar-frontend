@@ -14,8 +14,8 @@ import TableRow from '@material-ui/core/TableRow';
 
 import EmptyView from '../common/EmptyView';
 import Header from '../common/Header';
-import noCocktailDark from '../../assets/images/no-cocktail-dark.png';
-import noCocktailLight from '../../assets/images/no-cocktail-light.png';
+import noCocktailDark from '../../assets/images/no-cocktail-dark.webp';
+import noCocktailLight from '../../assets/images/no-cocktail-light.webp';
 import Notification from '../common/Notification';
 import { ThemeContext } from '../utils/contexts';
 import { THEMES } from '../utils/constants';

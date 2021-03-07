@@ -9,8 +9,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import MenuIcon from '@material-ui/icons/Menu';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
-import logoDark from '../../assets/images/logo-dark.png';
-import logoLight from '../../assets/images/logo-light.png';
+import logoDark from '../../assets/images/logo-dark.webp';
+import logoLight from '../../assets/images/logo-light.webp';
 import { THEMES } from '../utils/constants';
 import { SidebarContext, ThemeContext } from '../utils/contexts';
 import ThemeToggle from './ThemeToggle';

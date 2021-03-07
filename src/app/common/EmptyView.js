@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
-import errorDark from '../../assets/images/error-dark.png';
-import errorLight from '../../assets/images/error-light.png';
+import errorDark from '../../assets/images/error-dark.webp';
+import errorLight from '../../assets/images/error-light.webp';
 import { THEMES } from '../utils/constants';
 import { ThemeContext } from '../utils/contexts';
 

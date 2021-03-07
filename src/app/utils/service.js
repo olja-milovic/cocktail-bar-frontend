@@ -39,7 +39,7 @@ const getImage = (location, name) => {
 	let image;
 
 	try {
-		image = require(`../../assets/${location}/${name.replaceAll(' ', '')}.png`).default;
+		image = require(`../../assets/${location}/${name.replaceAll(' ', '')}.webp`).default;
 	} catch (e) {
 		image = '';
 	}
