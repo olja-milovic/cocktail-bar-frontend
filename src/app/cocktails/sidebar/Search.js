@@ -47,10 +47,11 @@ export default function Search(props) {
 
 	return (
 		<div className={classes.search}>
-			<ClearIcon className={`${classes.icon} ${classes.clearIcon}`} onClick={handleClearClick}/>
-			<SearchIcon className={`${classes.icon} ${classes.searchIcon}`} onClick={handleSearchClick}/>
+			<ClearIcon className={`${classes.icon} ${classes.clearIcon}`} tabIndex="0" onClick={handleClearClick}/>
+			<SearchIcon className={`${classes.icon} ${classes.searchIcon}`} tabIndex="0" onClick={handleSearchClick}/>
 
 			<InputBase placeholder="Search…"
+					   tabIndex="-1"
 			           value={search}
 			           classes={{
 				           input: classes.input,

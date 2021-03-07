@@ -29,7 +29,7 @@ import { createTokenHeader } from '../utils/service';
 
 const source = axios.CancelToken.source();
 
-export default function AdminPanel() {
+export default function AdminPanel () {
 	const classes = adminPanelStyles();
 
 	const [ingredientList, setIngredientList] = useState([{...DEFAULT_INGREDIENTS, main: true}]);
@@ -151,7 +151,7 @@ export default function AdminPanel() {
 									renderInput={params => (
 										<TextField {...params}
 										           label={field.label}
-												   value={cocktailData[field.name]}
+										           value={cocktailData[field.name]}
 										           onChange={e => handleChange(field.name, e.target.value)}
 										           required={field.required}
 										           margin="normal"
@@ -242,7 +242,9 @@ export default function AdminPanel() {
 											</div>
 											{
 												ingredientList.length !== 1 &&
-												<IconButton type="button" className={classes.removeIngredient}
+												<IconButton type="button"
+												            aria-label="Remove"
+												            className={classes.removeIngredient}
 												            onClick={() => handleRemoveClick(index)}>
 													<RemoveCircleIcon fontSize="inherit"/>
 												</IconButton>
@@ -254,6 +256,7 @@ export default function AdminPanel() {
 										{
 											ingredientList.length - 1 === index &&
 											<Button color="secondary"
+											        aria-label="Add"
 											        variant="contained"
 											        startIcon={<AddCircleIcon/>}
 											        className={classes.addIngredient}
@@ -267,10 +270,22 @@ export default function AdminPanel() {
 						}
 					</RadioGroup>
 
-					<Button color="primary" type="submit" variant="contained" disabled={isAdding}>Submit</Button>
+					<Button color="primary"
+					        aria-label="Submit"
+					        type="submit"
+					        variant="contained"
+					        disabled={isAdding}>
+						Submit
+					</Button>
 				</form>
 
-				<Button color="primary" onClick={logout} variant="contained" className={classes.logout}>Logout</Button>
+				<Button color="primary"
+				        aria-label="Logout"
+				        onClick={logout}
+				        variant="contained"
+				        className={classes.logout}>
+					Logout
+				</Button>
 
 				{
 					successfulAdd && <Notification message={'Cocktail added successfully.'}

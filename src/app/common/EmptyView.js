@@ -19,7 +19,6 @@ export default function EmptyView(props) {
 			<img src={theme === THEMES.light ? errorLight : errorDark}
 			     alt="No preview"
 			     width="300"
-				 height="138"
 				 loading="lazy"
 			     className={classes.noResultsImage}/>
 			<div className={classes.noResultsMessage}>

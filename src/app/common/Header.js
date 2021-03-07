@@ -15,7 +15,7 @@ import { THEMES } from '../utils/constants';
 import { SidebarContext, ThemeContext } from '../utils/contexts';
 import ThemeToggle from './ThemeToggle';
 
-export default function Header(props) {
+export default function Header (props) {
 	const classes = headerStyles();
 
 	const history = useHistory();
@@ -39,17 +39,20 @@ export default function Header(props) {
 				}
 				{
 					props.hasSidebar &&
-					<IconButton edge="start" onClick={handleSidebarToggle} className={classes.menuButton}>
+					<IconButton edge="start"
+					            aria-label="Back"
+					            onClick={handleSidebarToggle}
+					            className={classes.menuButton}>
 						<MenuIcon/>
 					</IconButton>
 				}
 				<img alt="logo"
-					 width="141"
-					 height="16"
-					 loading="lazy"
-					 onClick={handleLogoClick}
-					 src={logo}
-					 className={classes.logo}/>
+				     width="141"
+				     height="16"
+				     loading="lazy"
+				     onClick={handleLogoClick}
+				     src={logo}
+				     className={classes.logo}/>
 				<ThemeToggle/>
 			</Toolbar>
 		</AppBar>

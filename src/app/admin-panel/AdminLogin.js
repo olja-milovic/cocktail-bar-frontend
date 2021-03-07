@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 
 import Header from '../common/Header';
 
-export default function AdminLogin(props) {
+export default function AdminLogin (props) {
 	const classes = loginFormStyles();
 
 	const [username, setUsername] = useState('');
@@ -51,6 +51,7 @@ export default function AdminLogin(props) {
 					           type="password"
 					           variant="outlined"/>
 					<Button disabled={loading}
+					        aria-label="Login"
 					        variant="contained"
 					        color="primary"
 					        size="large"

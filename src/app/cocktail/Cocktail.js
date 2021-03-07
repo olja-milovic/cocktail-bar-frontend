@@ -137,7 +137,7 @@ export default function Cocktail () {
 								<Divider orientation="vertical" flexItem className={classes.detailDivider}/>
 
 								<div className={classes.detail}>
-									<Typography variant="subtitle1" className={classes.subtitle}>
+									<Typography variant="body1">
 										{data.garnish === 'None' ? 'No garnish' : data.garnish}
 									</Typography>
 								</div>
