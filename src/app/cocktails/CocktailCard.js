@@ -35,8 +35,8 @@ export default function CocktailCard(props) {
 	}, []);
 
 	useEffect(() => {
-		setGlasswareImage(getGlasswareImage(props.glassware, theme));
-		setMethodImage(getMethodImage(props.method, theme));
+		setGlasswareImage(getGlasswareImage(props.glassware));
+		setMethodImage(getMethodImage(props.method));
 		setInvert(theme === THEMES.light ? {filter: 'invert(1)'} : {});
 	}, [theme]);
 
