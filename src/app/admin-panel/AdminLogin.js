@@ -10,6 +10,8 @@ import Typography from '@material-ui/core/Typography';
 
 import Header from '../common/Header';
 
+const source = axios.CancelToken.source();
+
 export default function AdminLogin (props) {
 	const classes = loginFormStyles();
 
@@ -22,7 +24,11 @@ export default function AdminLogin (props) {
 		setLoading(true);
 
 		if (username && password) {
-			axios.post(`${process.env.REACT_APP_URL}/admin/login`, {username: username, password: password})
+			axios.post(`${process.env.REACT_APP_URL}/admin/login`, {
+				username,
+				password,
+				cancelToken: source.token,
+			})
 				.then(res => res.data.message)
 				.then(token => props.onLogin(token.access_token, true))
 				.catch(() => {
@@ -30,6 +36,8 @@ export default function AdminLogin (props) {
 					props.onLogin(null, false);
 				});
 		}
+
+		return () => source.cancel();
 	};
 
 	return (

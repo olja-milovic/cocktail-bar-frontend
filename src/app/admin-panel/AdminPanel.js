@@ -53,6 +53,8 @@ export default function AdminPanel () {
 				setErrorMessage(error.response.data.message);
 				setFailedDataFetch(true);
 			});
+
+		return () => source.cancel();
 	}, []);
 
 	const handleIngredientChange = (name, value, index) => {
