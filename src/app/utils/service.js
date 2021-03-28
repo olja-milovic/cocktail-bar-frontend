@@ -1,8 +1,10 @@
+import * as cloneDeep from 'lodash.clonedeep';
+
 import { DEFAULT_QUERY, THEMES, TOKEN } from './constants';
 
 const getUrlParams = () => {
 	const urlParams = new URLSearchParams(window.location.search);
-	let queryParams = {...DEFAULT_QUERY};
+	let queryParams = cloneDeep(DEFAULT_QUERY);
 
 	for (const [key, value] of urlParams) {
 		if (key === 'search') {

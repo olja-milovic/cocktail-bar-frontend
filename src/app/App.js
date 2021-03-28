@@ -11,7 +11,7 @@ import { ThemeContext } from './utils/contexts';
 import { darkTheme, lightTheme } from './utils/themes';
 import { THEME, THEMES } from './utils/constants';
 
-export default function App() {
+export default function App () {
 	const [theme, setTheme] = useState(localStorage.getItem(THEME) || THEMES.light);
 
 	return (
@@ -21,15 +21,9 @@ export default function App() {
 			<ThemeContext.Provider value={{theme, setTheme}}>
 				<Router>
 					<Switch>
-						<Route exact path="/">
-							<Cocktails/>
-						</Route>
-						<Route path="/cocktail/:id">
-							<Cocktail/>
-						</Route>
-						<Route path="/admin">
-							<AdminRouter/>
-						</Route>
+						<Route exact path="/" component={Cocktails}/>
+						<Route path="/cocktail/:id" component={Cocktail}/>
+						<Route path="/admin" component={AdminRouter}/>
 					</Switch>
 				</Router>
 			</ThemeContext.Provider>

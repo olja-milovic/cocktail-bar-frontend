@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,10 +14,11 @@ import { QueryContext, SidebarContext } from '../utils/contexts';
 import { DEFAULT_COCKTAIL_INFO, getCardWidth } from '../utils/constants';
 import { createQueryParams, getUrlParams } from '../utils/service';
 
-export default function CardGrid() {
+export default function CardGrid () {
 	const classes = cardGridStyles();
 
 	const axiosRequest = useRef(null);
+	let history = useHistory();
 
 	const {setSidebarOpen} = useContext(SidebarContext);
 	const {query, setQuery} = useContext(QueryContext);
@@ -57,7 +59,7 @@ export default function CardGrid() {
 				params += `&${queryParams}`;
 			}
 
-			let result = await axios(`${process.env.REACT_APP_URL}/cocktails${params}`,{
+			let result = await axios(`${process.env.REACT_APP_URL}/cocktails${params}`, {
 				cancelToken: axiosRequest.current.token,
 			}).catch(e => !axios.isCancel(e) && setError(true));
 
@@ -94,9 +96,7 @@ export default function CardGrid() {
 		let queryParams = createQueryParams(query);
 		const params = queryParams ? `?${queryParams}` : '';
 
-		const location = window.location;
-		let url = `${location.protocol}//${location.host}${location.pathname}${params}`;
-		window.history.pushState({path: url}, '', url);
+		history.replace(params);
 		window.scrollTo(0, 0);
 
 		setCocktailInfo(DEFAULT_COCKTAIL_INFO);
