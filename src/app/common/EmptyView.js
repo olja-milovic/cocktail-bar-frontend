@@ -22,7 +22,7 @@ export default function EmptyView(props) {
 				 loading="lazy"
 			     className={classes.noResultsImage}/>
 			<div className={classes.noResultsMessage}>
-				<Typography className={classes.noResultsHeading}>{props.heading}</Typography>
+				<Typography variant="h5" className={classes.noResultsHeading}>{props.heading}</Typography>
 				<Typography>{props.message}</Typography>
 			</div>
 		</div>
@@ -51,5 +51,6 @@ const emptyViewStyles = makeStyles(theme => ({
 	},
 	noResultsHeading: {
 		fontWeight: 'bold',
+		margin: theme.spacing(1, 0, 2, 0),
 	},
 }));

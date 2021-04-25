@@ -97,7 +97,7 @@ export default function Cocktail () {
 			{
 				!loading && data.ingredients.length > 0 &&
 				<>
-					<Typography variant="h4" className={classes.title}>{data.name}</Typography>
+					<Typography variant="h4" component="h1" className={classes.title}>{data.name}</Typography>
 
 					<Paper elevation={0} className={classes.container}>
 						<div className={classes.imageContainer}>
@@ -143,7 +143,11 @@ export default function Cocktail () {
 								</div>
 							</div>
 
-							<Typography variant="body1" className={classes.preparation}>{data.preparation}</Typography>
+							<Typography variant="body1"
+							            component="article"
+							            className={classes.preparation}>
+								{data.preparation}
+							</Typography>
 
 							<Table>
 								<TableHead>

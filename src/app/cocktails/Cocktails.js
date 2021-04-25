@@ -17,7 +17,7 @@ export default function Cocktails() {
 
 	useEffect(() => setMetadata({
 		title: 'Den of Thieves • Cocktail Dictionary',
-		description: 'An extensive collection of cocktails made by the best mixologists in the world gathered in one' +
+		description: 'An extensive collection of cocktails made by the best mixologists in the world gathered in one ' +
 			'place and searchable by all the key ingredients.',
 	}), []);
 

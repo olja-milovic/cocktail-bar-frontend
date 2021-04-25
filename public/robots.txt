@@ -1,3 +1,4 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Disallow: /
+Sitemap: https://den-of-thieves.netlify.app/sitemap.xml

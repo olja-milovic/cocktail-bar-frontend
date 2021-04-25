@@ -23,8 +23,8 @@ export default function SidebarContent(props) {
 	return (
 		<>
 			<div className={classes.heading}>
-				<Typography component="h5" variant="h5">Filter</Typography>
-				<Typography className={classes.numOfResults}>{numOfResults}</Typography>
+				<Typography component="h2" variant="h5">Filter</Typography>
+				<Typography component="h3" variant="body1" className={classes.numOfResults}>{numOfResults}</Typography>
 			</div>
 			<Search onSubmit={props.onSubmit}/>
 			<Filters onSubmit={props.onSubmit}/>

@@ -83,7 +83,7 @@ export default function CocktailCard(props) {
 						     className={`cocktail-description ${classes.description}`}>
 
 							<Typography variant="h6"
-							            component="h6"
+							            component="h4"
 							            title={props.name}
 							            className={classes.title}
 							            gutterBottom>
@@ -231,6 +231,7 @@ const cocktailCardStyles = makeStyles(theme => ({
 		flexWrap: 'wrap',
 	},
 	chip: {
+		fontSize: '12px',
 		cursor: 'pointer',
 		margin: '2px',
 		flex: '1 0 33.33%',

@@ -8,6 +8,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import MenuIcon from '@material-ui/icons/Menu';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import Typography from '@material-ui/core/Typography';
 
 import logoDark from '../../assets/images/logo-dark.webp';
 import logoLight from '../../assets/images/logo-light.webp';
@@ -46,13 +47,15 @@ export default function Header (props) {
 						<MenuIcon/>
 					</IconButton>
 				}
-				<img alt="logo"
-				     width="141"
-				     height="16"
-				     loading="lazy"
-				     onClick={handleLogoClick}
-				     src={logo}
-				     className={classes.logo}/>
+				<Typography component="h1" className={classes.logoHeading}>
+					<img alt="Den of Thieves logo"
+					     width="141"
+					     height="16"
+					     loading="lazy"
+					     onClick={handleLogoClick}
+					     src={logo}
+					     className={classes.logo}/>
+				</Typography>
 				<ThemeToggle/>
 			</Toolbar>
 		</AppBar>
@@ -84,6 +87,9 @@ const headerStyles = makeStyles(theme => ({
 	toolbar: {
 		justifyContent: 'space-between',
 		minHeight: theme.spacing(6.25),
+	},
+	logoHeading: {
+		fontSize: 'revert',
 	},
 	logo: {
 		cursor: 'pointer',
