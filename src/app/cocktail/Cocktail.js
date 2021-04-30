@@ -64,12 +64,14 @@ export default function Cocktail () {
 					newScript.innerHTML = JSON.stringify({
 						'@context': 'https://schema.org',
 						'@type': 'Recipe',
-						'description': `${result.name} recipe`,
-						'image': image || '',
-						'recipeIngredient': result.ingredients.map(ingredient => `${ingredient.amount} ${ingredient.name}`),
-						'name': result.name,
-						'prepTime': 'PT10M',
-						'recipeInstructions': result.preparation,
+						description: `${result.name} recipe`,
+						image: image || '',
+						recipeCategory: 'cocktail',
+						keywords: [result.name, 'cocktail recipe'],
+						recipeIngredient: result.ingredients.map(ingredient => `${ingredient.amount} ${ingredient.name}`),
+						name: result.name,
+						prepTime: 'PT10M',
+						recipeInstructions: result.preparation.split('.').map(i => i.trim()).filter(i => !!i),
 					}, null, 2);
 
 					document.body.appendChild(newScript);
