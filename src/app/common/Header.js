@@ -48,7 +48,7 @@ export default function Header (props) {
 					</IconButton>
 				}
 				<Typography component="h1" className={classes.logoHeading}>
-					<img alt="Den of Thieves logo"
+					<img alt="Den of Thieves"
 					     width="141"
 					     height="16"
 					     loading="lazy"
