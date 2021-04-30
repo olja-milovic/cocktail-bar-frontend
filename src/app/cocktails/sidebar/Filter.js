@@ -65,7 +65,7 @@ export default function Filter(props) {
 		<FormControl className={classes.formControl}>
 			<div className={classes.heading}>
 				<div className={classes.title}>
-					<Typography component="h4" variant="h6" className={classes.label}>{props.name}</Typography>
+					<Typography component="h3" variant="h6" className={classes.label}>{props.name}</Typography>
 					<Typography className={classes.numOfSelected}>{selected.length}</Typography>
 				</div>
 				<a role="button" onClick={handleClear} className={classes.clear}>Clear</a>

@@ -83,7 +83,7 @@ export default function CocktailCard(props) {
 						     className={`cocktail-description ${classes.description}`}>
 
 							<Typography variant="h6"
-							            component="h4"
+							            component="h1"
 							            title={props.name}
 							            className={classes.title}
 							            gutterBottom>

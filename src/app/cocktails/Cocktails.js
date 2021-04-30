@@ -16,9 +16,9 @@ export default function Cocktails() {
 	const [metadata, setMetadata] = React.useState(getUrlParams());
 
 	useEffect(() => setMetadata({
-		title: 'Den of Thieves • Cocktail Dictionary',
-		description: 'An extensive collection of cocktails made by the best mixologists in the world gathered in one ' +
-			'place and searchable by all the key ingredients.',
+		title: 'Search & Filter Cocktails - Den of Thieves',
+		description: 'An extensive collection of cocktails made by the best mixologists in the world. ' +
+			'Search and filter the entire collection by spirit, liqueur, wine, mixer or any other keyword.',
 	}), []);
 
 	return (

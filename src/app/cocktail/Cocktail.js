@@ -51,7 +51,7 @@ export default function Cocktail () {
 					setLoading(false);
 					result.img_url ? setCocktailImage(getScaledImage(result.img_url, 500)) : setNoCocktailImage();
 					setMetadata({
-						title: `${result.name} • Den of Thieves`,
+						title: `${result.name} - Search & Filter Cocktails - Den of Thieves`,
 						description: `A complete guide for creating your own ${result.name} cocktail.`,
 					});
 					loadImages(result.glassware, result.method);
