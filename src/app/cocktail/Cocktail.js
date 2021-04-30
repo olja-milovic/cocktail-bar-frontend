@@ -49,12 +49,30 @@ export default function Cocktail () {
 					result = result.data.message;
 					setData(result);
 					setLoading(false);
-					result.img_url ? setCocktailImage(getScaledImage(result.img_url, 500)) : setNoCocktailImage();
+					const image = result.img_url && getScaledImage(result.img_url, 500);
+					image ? setCocktailImage(image) : setNoCocktailImage();
 					setMetadata({
 						title: `${result.name} - Search & Filter Cocktails - Den of Thieves`,
 						description: `A complete guide for creating your own ${result.name} cocktail.`,
 					});
 					loadImages(result.glassware, result.method);
+
+					// add schema.org for rich results
+					const newScript = document.createElement('script');
+					newScript.id = 'ld-script';
+					newScript.type = 'application/ld+json';
+					newScript.innerHTML = JSON.stringify({
+						'@context': 'https://schema.org',
+						'@type': 'Recipe',
+						'description': `${result.name} recipe`,
+						'image': image || '',
+						'recipeIngredient': result.ingredients.map(ingredient => `${ingredient.amount} ${ingredient.name}`),
+						'name': result.name,
+						'prepTime': 'PT10M',
+						'recipeInstructions': result.preparation,
+					}, null, 2);
+
+					document.body.appendChild(newScript);
 				})
 				.catch(() => {
 					setError(true);
@@ -62,6 +80,11 @@ export default function Cocktail () {
 				});
 		};
 		fetchData();
+
+		return () => {
+			const script = document.getElementById('ld-script');
+			document.body.removeChild(script);
+		};
 	}, []);
 
 	useEffect(() => {
