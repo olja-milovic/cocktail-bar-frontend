@@ -4,7 +4,7 @@
 alt="Markdown React icon"
 height="45px"
 />](https://reactjs.org/)&nbsp;&nbsp;&nbsp;
-[<img src="https://material-ui.com/static/logo_raw.svg"
+[<img src="https://mui.com/static/logo.png"
 alt="Markdown Material UI icon"
 height="45px"
 />](https://material-ui.com/)&nbsp;&nbsp;&nbsp;
