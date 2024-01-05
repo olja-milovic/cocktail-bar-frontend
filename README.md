@@ -17,7 +17,7 @@ height="45px"
 
 Frontend part of an online cocktail website.
 
-#### DEMO: [Den of Thieves](https://den-of-thieves.netlify.app/).
+#### DEMO: [Den of Thieves](https://den-of-thieves.netlify.app/) (BE no longer maintained).
 
 ## Contributor
 
